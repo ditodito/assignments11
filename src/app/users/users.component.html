@@ -1,0 +1,21 @@
+<button class="btn btn-primary" (click)="onLoadUsers()">Load Users</button>
+
+<ng-container *ngIf="!loading; else loadingContainer">
+  <ng-container *ngIf="users.length; else emptyContainer">
+    <div class="my-2">Users: {{ users | mapNames }}</div>
+
+    <div class="row">
+      <div class="col" *ngFor="let user of users">
+        <app-user-item [user]="user"></app-user-item>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-template #loadingContainer>
+  <div class="empty">Loading...</div>
+</ng-template>
+
+<ng-template #emptyContainer>
+  <div class="empty">List is empty</div>
+</ng-template>
